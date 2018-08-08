@@ -75,15 +75,41 @@ function minimum (numbers){
 // Note 2: Selection sort can be implemented using one array. Read the explanation at
 // https://courses.cs.vt.edu/csonline/Algorithms/Lessons/SelectionSort/index.html
 // to see how. This may make more sense to you.
+function destructiveMinimum (numbers){
+  var smallest, smallestIndex;
+  for(var i = 0; i < numbers.length; i++){
+    if (typeof(smallest)==='undefined' || numbers[i]<smallest){
+      smallest = numbers[i];
+      smallestIndex = i
+      console.log("numbers", numbers, "smallest", smallest);
+    }
+  }
+  numbers.splice(smallestIndex, 1);
+  return smallest;
+}
+
+function selectionSort(unsortedArray){
+  var copiedOriginal= JSON.parse(JSON.stringify(unsortedArray));
+  console.log("unsortedArray", unsortedArray)
+  var sortedArray = [];
+  for(var i = 0; i<unsortedArray.length; i++){
+    var smallestNum = destructiveMinimum(copiedOriginal);
+    console.log("smallestNum", smallestNum);
+    sortedArray.push(smallestNum)
+  }
+  return sortedArray;
+}
+
+
 
 // 6. Create a function called "createUser" that takes a name and a Date object
 // and returns an object with the keys "name" and "dob" (date of birth) with
 // those values.
 
-function createUser(name, date){
+function createUser(name, Date){
   var people = {
     name : name,
-    dob : date
+    dob : Date
   }
 return people
 }
@@ -93,15 +119,72 @@ return people
 // createUser and a Date object considered the current date, and calculates the user's
 // age in years on that date. You can use your code from yesterday's homework.
 
+function calculateAge (user, date){
+  var birthday = user.dob
+  var age = howOld(birthday, date)
+  return age
+
+  // people.dob
+// take user birthdate from createUser function
+//run that date through my code from yesterday to calculate age
+
+}
+
+
+
+function howOld (birthdate, dateNow){
+  var birthYear = birthdate.getFullYear()
+  var currentYear = dateNow.getFullYear()
+  var birthMonth = birthdate.getMonth()
+  var currentMonth = dateNow.getMonth()
+  var birthDay = birthdate.getDate()
+  var currentDay = dateNow.getDate()
+  var ageInYears = currentYear-birthYear
+  if(birthMonth > currentMonth){
+      ageInYears = ageInYears - 1;
+  }else if (birthMonth === currentMonth){
+      if (birthDay > 
+           currentDay){
+          ageInYears = ageInYears - 1;
+      }
+  }
+  return ageInYears;
+}
 // 8. Create a function called "addAge" that takes a user created from createUser
 // and a Date object and adds a new key on the user object, "age", with the age
 // in years the user was on that date.
+
+function addAge(user, date){
+  user.age= calculateAge(user, date)
+}
 
 // 9. Create a function called "createUsers" that takes two arrays of equal
 // length, the first being a list of names and the second being a list of dates of
 // birth, and returns a new array of objects created from those original arrays.
 
+function createUsers (arrayName, arrayBirth){
+  // var namesAndBirthdays = arrayName.concat.(arrayBirth);
+  var users = [];
+  for(var i = 0; i<arrayName.length; i++){
+    var name = arrayName[i]
+    var dob = arrayBirth[i]
+    var objectVar = {name: name, dob: dob}
+    users.push(objectVar)
+  }
+  return users;     
+
+}
+
 // 10. Create a function called "averageAge" that takes an array of users and
 // a Date object and returns the average age in years of the users on that date.
 // You do not have to handle the situation in which the current date is before
 // a user's date of birth.
+
+function averageAge (users, currentDate){
+  var ages = []
+  var averageAge = ageTotal/users.length
+  for (var i = 0; i < users.length; i++){
+    var user = users[i]
+    ages.push(calculateAge(user, currentDate))
+  }
+}

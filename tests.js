@@ -59,23 +59,23 @@ describe('minimum', function () {
   })
 })
 
-// describe('selectionSort', function () {
-//   it("returns an empty array for an empty array", function () {
-//     assert.deepEqual([], selectionSort([]))
-//   })
+describe('selectionSort', function () {
+  it("returns an empty array for an empty array", function () {
+    assert.deepEqual([], selectionSort([]))
+  })
 
-//   it("returns the same array for an array with one number", function () {
-//     assert.deepEqual([2], selectionSort([2]))
-//   })
+  it("returns the same array for an array with one number", function () {
+    assert.deepEqual([2], selectionSort([2]))
+  })
 
-//   it("returns the same array for a sorted array", function () {
-//     assert.deepEqual([2, 4, 10, 12], selectionSort([2, 4, 10, 12]))
-//   })
+  it("returns the same array for a sorted array", function () {
+    assert.deepEqual([2, 4, 10, 12], selectionSort([2, 4, 10, 12]))
+  })
 
-//   it("returns a sorted array", function () {
-//     assert.deepEqual([2, 4, 10, 12], selectionSort([4, 2, 12, 10]))
-//   })
-// })
+  it("returns a sorted array", function () {
+    assert.deepEqual([2, 4, 10, 12], selectionSort([4, 2, 12, 10]))
+  })
+})
 
 describe('createUser', function () {
   it('should create a user object', function () {
